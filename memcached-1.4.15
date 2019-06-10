@@ -1,6 +1,7 @@
 FROM centos
 WORKDIR /tmp
 RUN  yum install -y \
+   gcc \
    libevent \
    libevent-devel \
    wget \
