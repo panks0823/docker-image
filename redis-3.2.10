@@ -11,5 +11,6 @@ WORKDIR  redis-3.2.10
 RUN  make PREFIX=/usr/local/redis \
    && make PREFIX=/usr/local/redis install \
    && mkdir -p /usr/local/redis/{conf,data,logs}
+   && rm -rf /tmp/*
 EXPOSE 6379
 CMD ["/usr/local/redis/bin/redis-server"]
