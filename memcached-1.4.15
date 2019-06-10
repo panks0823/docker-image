@@ -3,6 +3,7 @@ WORKDIR /tmp
 RUN  yum install -y \
    libevent \
    libevent-devel \
+   wget \
    && wget wget http://memcached.googlecode.com/files/memcached-1.4.15.tar.gz \
    && tar xf  memcached-1.4.15.tar.gz -C /usr/local/
 WORKDIR  /usr/local/memcached-1.4.15/
