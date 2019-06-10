@@ -2,6 +2,7 @@ FROM centos
 WORKDIR /tmp
 RUN  yum install -y \
    gcc \
+   gcc-c++ \
    libevent \
    libevent-devel \
    make \
