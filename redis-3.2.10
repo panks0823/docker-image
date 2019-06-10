@@ -1,11 +1,15 @@
 FROM centos
 WORKDIR /tmp
-RUN  yum install  gcc make gcc-c++ wget -y
-RUN  wget http://download.redis.io/releases/redis-3.2.10.tar.gz
-RUN  tar xf  redis-3.2.10.tar.gz
+RUN  yum install -y \
+   gcc \
+   gcc-c++ \
+   make \
+   wget \
+   && wget http://download.redis.io/releases/redis-3.2.10.tar.gz \
+   && tar xf  redis-3.2.10.tar.gz
 WORKDIR  redis-3.2.10
-RUN  make PREFIX=/usr/local/redis
-RUN  make PREFIX=/usr/local/redis install
-RUN  mkdir -p /usr/local/redis/{conf,data,logs}
+RUN  make PREFIX=/usr/local/redis \
+   && make PREFIX=/usr/local/redis install \
+   && mkdir -p /usr/local/redis/{conf,data,logs}
 EXPOSE 6379
 CMD ["/usr/local/redis/bin/redis-server"]
