@@ -1,13 +1,13 @@
 FROM centos
 WORKDIR /tmp
 RUN  yum install -y \
-libevent \
-libevent-devel \
-&& wget wget http://memcached.googlecode.com/files/memcached-1.4.15.tar.gz  
-&& tar xf  memcached-1.4.15.tar.gz -C /usr/local/
+   libevent \
+   libevent-devel \
+   && wget wget http://memcached.googlecode.com/files/memcached-1.4.15.tar.gz \
+   && tar xf  memcached-1.4.15.tar.gz -C /usr/local/
 WORKDIR  /usr/local/memcached-1.4.15/
-RUN  ./configure  -prefix=/usr/local/memcached
-&& make
-&& make install
+RUN  ./configure  -prefix=/usr/local/memcached \
+   && make \
+   && make install
 EXPOSE 11211
 CMD ["/usr/local/memcached/bin/memcached -d -m 100m -p 11211 -u root"]
