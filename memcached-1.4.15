@@ -8,10 +8,13 @@ RUN  yum install -y \
    make \
    wget \
    && wget http://memcached.org/files/old/memcached-1.4.15.tar.gz \
-   && tar xf  memcached-1.4.15.tar.gz -C /usr/local/
+   && tar xf  memcached-1.4.15.tar.gz -C /usr/local/ \
+   && yum clean all \
+   && rm -f memcached-1.4.15.tar.gz
 WORKDIR  /usr/local/memcached-1.4.15/
 RUN  ./configure  -prefix=/usr/local/memcached \
    && make \
    && make install
+   $$ make clean
 EXPOSE 11211
 CMD ["/usr/local/memcached/bin/memcached -d -m 100m -p 11211 -u root"]
