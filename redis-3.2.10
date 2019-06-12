@@ -6,11 +6,13 @@ RUN  yum install -y \
    make \
    wget \
    && wget http://download.redis.io/releases/redis-3.2.10.tar.gz \
-   && tar xf  redis-3.2.10.tar.gz
+   && tar xf  redis-3.2.10.tar.gz \
+   && rm -f redis-3.2.10.tar.gz \
+   && yum clean all
 WORKDIR  redis-3.2.10
 RUN  make PREFIX=/usr/local/redis \
    && make PREFIX=/usr/local/redis install \
    && mkdir -p /usr/local/redis/{conf,data,logs} \
-   && rm -rf /tmp/*
+   && make clean 
 EXPOSE 6379
 CMD ["/usr/local/redis/bin/redis-server"]
